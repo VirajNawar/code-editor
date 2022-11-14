@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { IoTrashOutline } from 'react-icons/io5'
 import { BiEditAlt } from 'react-icons/bi'
-import logo from '../../assets/logo-small.png'
+import logo from '../../assets/logo.svg'
+
+
 
 const StyledRightComponent = styled.div`
     position: absolute;
@@ -11,6 +13,8 @@ const StyledRightComponent = styled.div`
     width: 60%;
     padding: 2rem;
     height: 100vh;
+    font-family: 'Noto Sans', sans-serif;
+
 `
 
 const Header = styled.div`
@@ -23,7 +27,7 @@ const Header = styled.div`
 const Heading = styled.h3`
   font-size: ${props => props.size === 'small' ? "1.25rem" : "1.75rem"};
   font-weight: 400;
-
+  font-family: 'Raleway', sans-serif;
   span{
     font-weight: 700;
   }
@@ -55,6 +59,7 @@ const FolderIcons = styled.div`
     align-items: center;
     gap: 0.7rem;
     cursor: pointer;
+   
 `
 
 const PlayGroundCards = styled.div`
@@ -64,12 +69,22 @@ const PlayGroundCards = styled.div`
 `
 
 const Card = styled.div`
-    padding: 0.5rem;
+    padding: 0.7rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
-    box-shadow: 0 0 4px 0px #989898;
+    box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.03);
+    background-color: #331a4a;
+    color:#FFFF;
+    transition: all .2s ease-in-out;
+
+    &:hover{
+      transform: scale(1.05); 
+      box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    }
+
 `
 
 const CardContainer = styled.div`
@@ -80,8 +95,10 @@ const CardContainer = styled.div`
 const CardContent = styled.div`
 `
 
+
 const Logo = styled.img`
     width: 70px;
+    height:50px;
     margin-right: 1rem;
 `
 const RightComponent = () => {
@@ -103,8 +120,8 @@ const RightComponent = () => {
                 Folder Name
               </Heading>
               <FolderIcons>
-                <IoTrashOutline />
-                <BiEditAlt />
+                <IoTrashOutline className='delete'/>
+                <BiEditAlt className='edit'/>
                 <AddFolder><span>+</span> New Playground</AddFolder>
               </FolderIcons>
             </Header>
@@ -121,8 +138,8 @@ const RightComponent = () => {
                       </CardContent>
                     </CardContainer>
                     <FolderIcons>
-                      <IoTrashOutline />
-                      <BiEditAlt />
+                      <IoTrashOutline className='delete'/>
+                      <BiEditAlt className='edit'/>
                     </FolderIcons>
                   </Card>
                 ))
