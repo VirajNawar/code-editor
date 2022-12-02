@@ -35,4 +35,4 @@ function ModalProvider({children}){
     )
 }
 
-export default ModalProvider;
+export default ModalProvider

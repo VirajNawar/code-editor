@@ -82,20 +82,20 @@ const LeftComponent = () => {
     const { openModal } = useContext(ModalContext)
     return (
         <StyledLeftComponent>
-            <ContentContainer>
-                <Logo src={logo} alt="" />
-                <MainHeading> <span>Code</span> Play</MainHeading>
-                <SubHeading>Code. Compile. Develop.</SubHeading>
-                <AddPlayground onClick={()=> openModal({
-                    show: true,
-                    modalType: 3,
-                    identifiers: {
-                        folderId: "",
-                        cardId: "",
-                    }
-                })}><span>+</span> Create New Playground</AddPlayground>
-            </ContentContainer>
-        </StyledLeftComponent>
+        <ContentContainer>
+            <Logo src={logo} alt="" />
+            <MainHeading> <span>Code</span> Deck</MainHeading>
+            <SubHeading>Code. Compile. Debug.</SubHeading>
+            <AddPlayground onClick={() => openModal({
+                show: true,
+                modalType: 3,
+                identifiers: {
+                    folderId: "",
+                    cardId: "",
+                }
+            })} ><span>+</span> Create New Playground</AddPlayground>
+        </ContentContainer>
+    </StyledLeftComponent>
     )
 }
 
