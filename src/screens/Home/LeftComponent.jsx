@@ -43,7 +43,7 @@ const SubHeading = styled.div`
     font-family: 'Noto Sans', sans-serif;
 `
 
-const AddPlayground = styled.button`
+const AddNewButton = styled.button`
     padding: 0.25rem 1.5rem;
     font-size: 1rem;
     border-radius: 30px;
@@ -57,9 +57,9 @@ const AddPlayground = styled.button`
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
     transition: all .5s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+    // user-select: none;
+    // -webkit-user-select: none;
+    // touch-action: manipulation;
     span{
         font-size: 2rem;
         font-weight: 700;
@@ -78,24 +78,23 @@ const AddPlayground = styled.button`
     }
 `
 const LeftComponent = () => {
-
-    const { openModal } = useContext(ModalContext)
+    const { openModal } = useContext(ModalContext);
     return (
         <StyledLeftComponent>
-        <ContentContainer>
-            <Logo src={logo} alt="" />
-            <MainHeading> <span>Code</span> Deck</MainHeading>
-            <SubHeading>Code. Compile. Debug.</SubHeading>
-            <AddPlayground onClick={() => openModal({
-                show: true,
-                modalType: 3,
-                identifiers: {
-                    folderId: "",
-                    cardId: "",
-                }
-            })} ><span>+</span> Create New Playground</AddPlayground>
-        </ContentContainer>
-    </StyledLeftComponent>
+            <ContentContainer>
+                <Logo src={logo} alt="" />
+                <MainHeading> <span>Code</span> Play</MainHeading>
+                <SubHeading>Think. Code. Repeat.</SubHeading>
+                <AddNewButton onClick={() => openModal({
+                    show: true,
+                    modalType: 3,
+                    identifiers: {
+                        folderId: "",
+                        cardId: "",
+                    }
+                })} ><span>+</span> Create New Playground</AddNewButton>
+            </ContentContainer>
+        </StyledLeftComponent>
     )
 }
 

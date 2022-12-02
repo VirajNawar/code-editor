@@ -10,6 +10,7 @@ function EditFolder() {
   
     const folderId = isOpenModal.identifiers.folderId;
     const [folderTitle, setFolderTitle] = useState(folders[folderId].title);
+    
   return (
     <>
     <Header>

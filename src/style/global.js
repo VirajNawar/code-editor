@@ -9,13 +9,5 @@ export const GlobalStyle = createGlobalStyle`
         
     }
 
-    .delete:hover{
-        color:#E80000;
-        transition-duration: .1s;
-       }
-
-       .edit:hover{
-         color:#0081CB;
-        transition-duration: .1s;
-       }
+    
 `
