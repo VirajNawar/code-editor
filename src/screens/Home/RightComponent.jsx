@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { IoTrashOutline } from 'react-icons/io5'
 import { BiEditAlt } from 'react-icons/bi'
 import logo from '../../assets/logo.svg'
+import { useNavigate } from 'react-router-dom'
+import { ModalContext } from '../../context/ModalContext'
+import { PlaygroundContext } from '../../context/PlaygroundContext'
 
 
 
@@ -102,44 +105,82 @@ const Logo = styled.img`
     margin-right: 1rem;
 `
 const RightComponent = () => {
-  return (
+
+  const navigate = useNavigate()
+
+  const {openModal} = useContext(ModalContext)
+  const {folders, deleteFolder, deleteCard} = useContext(PlaygroundContext)
+
+   return (
     <StyledRightComponent>
       <Header>
         <Heading size="large">
           My <span>Playground</span>
         </Heading>
-        <AddFolder> <span>+</span> New Folder</AddFolder>
+        <AddFolder onClick={() => openModal({
+          show: true,
+          modalType: 1,
+          identifiers: {
+            folderId: "",
+            cardId: "",
+          }
+        })}> <span>+</span> New Folder</AddFolder>
       </Header>
       <hr />
 
       {
-        Array.from({ length: 4 }).map(() => (
-          <FolderCard>
+         Object.entries(folders).map(([folderId, folder]) => (
+          <FolderCard key={folderId}>
             <Header>
               <Heading size="small">
-                Folder Name
+                {folder.title}
               </Heading>
               <FolderIcons>
-                <IoTrashOutline className='delete'/>
-                <BiEditAlt className='edit'/>
-                <AddFolder><span>+</span> New Playground</AddFolder>
+                <IoTrashOutline onClick={() => deleteFolder(folderId)} />
+                <BiEditAlt onClick={() => openModal({
+                  show: true,
+                  modalType: 4,
+                  identifiers: {
+                    folderId: folderId,
+                    cardId: "",
+                  }
+                })} />
+                <AddFolder onClick={() => openModal({
+                  show: true,
+                  modalType: 2,
+                  identifiers: {
+                    folderId: folderId,
+                    cardId: "",
+                  }
+                })}><span>+</span> New Playground</AddFolder>
               </FolderIcons>
             </Header>
 
             <PlayGroundCards>
               {
-                Array.from({ length: 4 }).map(() => (
-                  <Card>
-                    <CardContainer>
-                      <Logo src={logo} />
-                      <CardContent>
-                        <p>Playground Name</p>
-                        <p>Language: C++</p>
-                      </CardContent>
-                    </CardContainer>
-                    <FolderIcons>
-                      <IoTrashOutline className='delete'/>
-                      <BiEditAlt className='edit'/>
+               Object.entries(folder['playgrounds']).map(([playgroundId, playground]) => (
+                <Card key={playgroundId} onClick={() => {
+                  navigate(`/playground/${folderId}/${playgroundId}`)
+                }}>
+                  <CardContainer>
+                    <Logo src={logo} />
+                    <CardContent>
+                      <p>{playground.title}</p>
+                      <p>Language: {playground.language}</p>
+                    </CardContent>
+                  </CardContainer>
+                  <FolderIcons onClick={(e) => {
+                    e.stopPropagation(); //stop click propagation from child to parent
+                  }}>
+                    <IoTrashOutline onClick={() => deleteCard(folderId, playgroundId)} />
+                    <BiEditAlt onClick={() => openModal({
+                      show: true,
+                      modalType: 5,
+                      identifiers: {
+                        folderId: folderId,
+                        cardId: playgroundId,
+                      }
+                    })} />
                     </FolderIcons>
                   </Card>
                 ))

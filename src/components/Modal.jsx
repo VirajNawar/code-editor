@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NewFolder, NewPlayground, NewPlaygroundAndFolder } from './ModalTypes'
+import  {NewFolder, NewPlayground, NewPlaygroundAndFolder, EditFolder, EditPlaygroundTitle, Loading}  from './ModalTypes'
+
+
 
 const ModalContainer = styled.div`
     position: fixed;
@@ -36,6 +38,33 @@ export const Heading = styled.h3`
   }
 `
 
+export const CloseButton = styled.button`
+  background: transparent;
+  outline: 0;
+  border: 0;
+  font-size: 2rem;
+  cursor: pointer;
+`
+
+export const Input = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  gap: 2rem;
+  padding-bottom: 0;
+  input {
+    flex-grow: 1;
+    height: 2rem;
+  }
+  button {
+    background: #241f21;
+    height: 2rem;
+    color: white;
+    padding: 0.1rem 2rem;
+  }
+`
+
 const Modal = () => {
   const type = 3;
 
@@ -50,6 +79,11 @@ const Modal = () => {
         {type === 1 && <NewFolder />}
         {type === 2 && <NewPlayground />}
         {type === 3 && <NewPlaygroundAndFolder />}
+        {type === 4 && <EditFolder />}
+        {type === 5 && <EditPlaygroundTitle />}
+        {type === 6 && <Loading />}
+
+
       </ModalContent>
     </ModalContainer>
   )
